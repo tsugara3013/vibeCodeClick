@@ -21,17 +21,20 @@
     const countDisplay = document.getElementById('count');
     const clickBtn = document.getElementById('clickBtn');
 
-    async function fetchCount() {
-      const res = await fetch('https://your-railway-app-url/count');
-      const data = await res.json();
-      countDisplay.textContent = data.count;
-    }
+const backendURL = 'https://vibecodeclick-production.up.railway.app';
 
-    async function sendClick() {
-      const res = await fetch('https://your-railway-app-url/click', { method: 'POST' });
-      const data = await res.json();
-      countDisplay.textContent = data.count;
-    }
+async function fetchCount() {
+  const res = await fetch(`${backendURL}/count`);
+  const data = await res.json();
+  countDisplay.textContent = data.count;
+}
+
+async function sendClick() {
+  const res = await fetch(`${backendURL}/click`, { method: 'POST' });
+  const data = await res.json();
+  countDisplay.textContent = data.count;
+}
+
 
     clickBtn.addEventListener('click', sendClick);
     fetchCount();
