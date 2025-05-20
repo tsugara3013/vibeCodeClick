@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Clicker Game</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 5rem; }
+    button { font-size: 2rem; padding: 1rem 2rem; }
+    #count { font-size: 3rem; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>Global Clicker Game</h1>
+  <span id="explain"></span>
+  <br>
+  <hr>
+  <button id="clickBtn">Click Me</button>
+  <div id="count">Loading...</div>
+
+  <script>
+    const countDisplay = document.getElementById('count');
+    const clickBtn = document.getElementById('clickBtn');
+
+    async function fetchCount() {
+      const res = await fetch('https://your-railway-app-url/count');
+      const data = await res.json();
+      countDisplay.textContent = data.count;
+    }
+
+    async function sendClick() {
+      const res = await fetch('https://your-railway-app-url/click', { method: 'POST' });
+      const data = await res.json();
+      countDisplay.textContent = data.count;
+    }
+
+    clickBtn.addEventListener('click', sendClick);
+    fetchCount();
+    setInterval(fetchCount, 5000); // auto refresh every 5s
+  </script>
+
+  <script>
+    let span = document.querySelector("#explain")
+    span.innerHTML = "(this is vibe code to revesre engineer after study backend)"
+  </script>
+</body>
+</html>
